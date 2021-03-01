@@ -40,7 +40,7 @@ at::Tensor convolution(
         dilation,
         groups,
         benchmark,
-        deterministic);
+        deterministic); 
 }
 
 at::Tensor convolution_backward_weight(
@@ -52,7 +52,8 @@ at::Tensor convolution_backward_weight(
     c10::ArrayRef<int64_t> dilation,
     int64_t groups,
     bool benchmark,
-    bool deterministic) {
+    bool deterministic,
+    bool allow_tf32) {
 
     return at::cudnn_convolution_backward_weight(
         weight_size,
@@ -63,7 +64,8 @@ at::Tensor convolution_backward_weight(
         dilation,
         groups,
         benchmark,
-        deterministic);
+        deterministic,
+        allow_tf32);
 }
 
 at::Tensor convolution_backward_input(
@@ -75,7 +77,8 @@ at::Tensor convolution_backward_input(
     c10::ArrayRef<int64_t> dilation,
     int64_t groups,
     bool benchmark,
-    bool deterministic) {
+    bool deterministic,
+    bool allow_tf32) {
 
     return at::cudnn_convolution_backward_input(
         input_size,
@@ -86,7 +89,8 @@ at::Tensor convolution_backward_input(
         dilation,
         groups,
         benchmark,
-        deterministic);
+        deterministic,
+        allow_tf32);
 }
 
 PYBIND11_MODULE(TORCH_EXTENSION_NAME, m) {
