@@ -21,8 +21,8 @@ output = cudnn_convolution.convolution(input, weight, bias, stride, padding, dil
 grad_output = torch.zeros(128, 64, 14, 14).to('cuda')
 
 # compute the gradient w.r.t. the weights and input
-grad_weight = cudnn_convolution.convolution_backward_weight(input, weight.shape, grad_output, stride, padding, dilation, groups, False, False)
-grad_input  = cudnn_convolution.convolution_backward_input(input.shape, weight, grad_output, stride, padding, dilation, groups, False, False)
+grad_weight = cudnn_convolution.convolution_backward_weight(input, weight.shape, grad_output, stride, padding, dilation, groups, False, False, False)
+grad_input  = cudnn_convolution.convolution_backward_input(input.shape, weight, grad_output, stride, padding, dilation, groups, False, False, False)
 
 print(grad_weight.shape)
 print(grad_input.shape)
